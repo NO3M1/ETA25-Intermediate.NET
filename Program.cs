@@ -28,6 +28,8 @@ namespace ETA25_Intermediate_C_
             // session1 Homework
 
             Person personHomework = new Person();
+            //Person personHomework = new Person("Noemi", "Homework", 55);
+
 
             personHomework.FirstName = "Noemi";
             personHomework.LastName = "Homework";
