@@ -3,29 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ETA25_Intermediate_C_.Session2.HelperMethods;
+using ETA25_Intermediate_C_.Session3.Enums;
+using ETA25_Intermediate_C_.Session3.HelperMethods;
+using ETA25_Intermediate_C_.Session3.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools.V133.Storage;
 
-namespace ETA25_Intermediate_C_.Session2;
+namespace ETA25_Intermediate_C_.Session3;
 public class TextBoxTests
 {
     public IWebDriver Driver;
     public const string BaseUrl = "https://demoqa.com/";
     public JavascriptHelper JavascriptHelper;
+    private readonly Homepage _homepage;
 
     //input field values
-    public const string FullName = "Noemi Sz";
-    public const string Email = "noemi@test.com";
-    public const string CurrentAddress = "This is my current address";
-    public const string PermanentAddress = "This is my permanent address";
+    //public const string FullName = "Noemi Sz";
+    //public const string Email = "noemi@test.com";
+    //public const string CurrentAddress = "This is my current address";
+    //public const string PermanentAddress = "This is my permanent address";
 
     //constructor default
     public TextBoxTests()
     {
         Driver = new ChromeDriver();
         JavascriptHelper = new JavascriptHelper(Driver);
+        _homepage = new Homepage(Driver);
 
     }
 
@@ -40,15 +45,21 @@ public class TextBoxTests
 
     }
 
-    [Test]
-    public void FillFormTest()
+    [TestCase(["Noemi Sz", "noemi@test.com", "This is my current address", "This is my permanent address"])]
+
+    public void FillFormTest(string fullName, string email, string currentAddress, string permanentAddress)
     {
+        JavascriptHelper.Scroll(0, 100);
 
-        IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)Driver;
-        jsExecutor.ExecuteScript("window.scrollTo(0,1000)");
+        //HomePage varianta 1
+        //_homepage.ElementsCard.Click();
 
-        IWebElement elementButton = Driver.FindElement(By.XPath("//h5[text()=\"Elements\"]"));
-        elementButton.Click();
+        //HomePage varianta 2
+        //_homepage.AccessElementsPage();
+
+        //HomePage varianta 3
+        _homepage.AccesPageByName(CardName.Elements);
+
 
         IWebElement textBoxOption = Driver.FindElement(By.XPath("//span[text()=\"Text Box\"]"));
         textBoxOption.Click();
@@ -68,10 +79,10 @@ public class TextBoxTests
         IWebElement submitButton = Driver.FindElement(By.Id("submit"));
 
         // Fill in fields with values
-        fullNameInput.SendKeys(FullName);
-        userEmailInput.SendKeys(Email);
-        currentAddressInput.SendKeys(CurrentAddress);
-        permanentAddressInput.SendKeys(PermanentAddress);
+        fullNameInput.SendKeys(fullName);
+        userEmailInput.SendKeys(email);
+        currentAddressInput.SendKeys(currentAddress);
+        permanentAddressInput.SendKeys(permanentAddress);
 
         JavascriptHelper.Scroll(0, 500);
 
