@@ -64,22 +64,26 @@ public class PracticeFormTests
         practiceFormOption.Click();
 
         JavascriptHelper.ScrollVertically(400);
-        /*
-                _practiceFormPage.FirstNameInput.SendKeys("Noemi");
-                _practiceFormPage.LastNameInput.SendKeys("Sz");
-                _practiceFormPage.EmailInput.SendKeys("test@test.com");
-                _practiceFormPage.SelectGender(Gender.Male);
-                _practiceFormPage.MobileInput.SendKeys("0748515895");
-                _practiceFormPage.SetDateOfBirth("1992", "August", "31");
-                _practiceFormPage.SelectSubjects(new List<string>() { "English", "Accounting", "Physics" });
-                _practiceFormPage.SelectHobbies(new List<Hobby>() { Hobby.Music, Hobby.Reading });
-                _practiceFormPage.CurrentAddressInput.SendKeys("Test address input");*/
+        
+/*         _practiceFormPage.FirstNameInput.SendKeys("Noemi");
+         _practiceFormPage.LastNameInput.SendKeys("Sz");
+         _practiceFormPage.EmailInput.SendKeys("test@test.com");
+         _practiceFormPage.SelectGender(Gender.Male);
+         _practiceFormPage.MobileInput.SendKeys("0748515895");
+         _practiceFormPage.SetDateOfBirth("1992", "August", "31");
+         _practiceFormPage.SelectSubjects(new List<string>() { "English", "Accounting", "Physics" });
+         _practiceFormPage.SelectHobbies(new List<Hobby>() { Hobby.Music, Hobby.Reading });
+         _practiceFormPage.CurrentAddressInput.SendKeys("Test address input");
+         _practiceFormPage.stateDropdown.SendKeys("NCR");
+         _practiceFormPage.stateDropdown.SendKeys(Keys.Enter);
+         _practiceFormPage.cityDropdown.SendKeys("Delhi");
+         _practiceFormPage.stateDropdown.SendKeys(Keys.Enter);
+*/
 
 
-
-        _practiceFormPage.FillInFormFields("Noemi", "Sz", "test@test.com", Gender.Male, "0748515895", "1992", "August", "31",
-            new List<string>() { "English", "Accounting", "Physics" }, new List<Hobby>() { Hobby.Music, Hobby.Reading }, "Test address input");
-
+        _practiceFormPage.FillInFormFields("Noemi", "Sz", "test@test.com", Gender.Male, "0748515895",
+        "1992", "August", "31", new List<string>() { "English", "Accounting", "Physics" },
+        new List<Hobby>() { Hobby.Music, Hobby.Reading }, "Test address input", "NCR", "Delhi");
 
 
         Thread.Sleep(8000);

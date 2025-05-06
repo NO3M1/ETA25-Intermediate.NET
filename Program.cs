@@ -42,6 +42,39 @@ namespace ETA25_Intermediate_C_
 
             #endregion
 
+
+            #region Session06
+
+            Session6.Employee employee1 = new Session6.Employee("Noemi", "Testing");
+            Console.WriteLine();
+            Console.WriteLine();
+
+            employee1.DisplayInfo();
+            Console.WriteLine(employee1.WoAmI());
+
+            Console.WriteLine("The current salary is: " + employee1.GetSalary()); //0
+            employee1.SetSalary(5000);
+            Console.WriteLine("The current salary is: " + employee1.GetSalary()); //5000
+            employee1.SetSalary(10000);
+
+            Session6.Person person5 = new Session6.Employee("DerivedClass", "Department");
+            person5.DisplayInfo();
+
+            List<Session6.Person> personsList = new List<Session6.Person>()
+            {
+                new Session6.Employee("Emp1", "Dept1"),
+                new Session6.Employee("Emp2", "Dept1"),
+                new Session6.Employee("Emp3", "Dept1"),
+
+            };
+
+            personsList.ForEach(person => person.DisplayInfo());
+
+
+
+
+            #endregion
+
             Console.ReadKey();
         }
     }

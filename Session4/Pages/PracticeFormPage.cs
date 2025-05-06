@@ -26,6 +26,9 @@ public class PracticeFormPage
     public IWebElement DateOfBirthInput => _driver.FindElement(By.Id("dateOfBirthInput"));
     //public IWebElement SubjectsInput => _driver.FindElement(By.Id("subjectsInput"));
     public IWebElement CurrentAddressInput => _driver.FindElement(By.Id("currentAddress"));
+    public IWebElement stateDropdown => _driver.FindElement(By.Id("react-select-3-input"));
+    public IWebElement cityDropdown => _driver.FindElement(By.Id("react-select-4-input"));
+
 
     //metoda 1 pentru Gender
     public void SelectGender(Gender gender)
@@ -148,9 +151,24 @@ public class PracticeFormPage
         return _driver.FindElement(By.XPath($"//label[@for=\"hobbies-checkbox-{index}\"]"));
     }
 
+    
+    //metoda pentru state and city 
+    public void  StateAndCityTest(string userInputState, string userInputCity)
+    {
+
+        stateDropdown.SendKeys(userInputState);
+        stateDropdown.SendKeys(Keys.Enter);
+                
+        cityDropdown.SendKeys(userInputCity);
+        cityDropdown.SendKeys(Keys.Enter);
+
+    }
+
+
+
     //metoda pentru fill in de campuri 
-    public void FillInFormFields(string firstName, string lastName, string email, Gender gender, string mobileNumber, 
-        string dateOfBirthYear, string dateOfBirthMonthName, string dateOfBirthDay, List<string> subjects, List<Hobby> hobbies, string address)
+    public void FillInFormFields(string firstName, string lastName, string email, Gender gender, string mobileNumber,
+        string dateOfBirthYear, string dateOfBirthMonthName, string dateOfBirthDay, List<string> subjects, List<Hobby> hobbies, string address, string userInputState, string userInputCity)
     {
         FirstNameInput.SendKeys(firstName);
         LastNameInput.SendKeys(lastName);
@@ -161,6 +179,10 @@ public class PracticeFormPage
         SelectSubjects(subjects);
         SelectHobbies(hobbies);
         CurrentAddressInput.SendKeys(address);
+        stateDropdown.SendKeys(userInputState);
+        cityDropdown.SendKeys(userInputState);
+
+
     }
 }
   
