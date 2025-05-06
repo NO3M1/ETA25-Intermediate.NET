@@ -1,4 +1,5 @@
 ﻿using ETA25_Intermediate_C_.Session1;
+using ETA25_Intermediate_C_.Session6;
 
 namespace ETA25_Intermediate_C_
 {
@@ -10,24 +11,24 @@ namespace ETA25_Intermediate_C_
 
             #region Session1
 
-            Person person = new Person();
+            Session1.Person person = new Session1.Person();
 
             var years = EmployeeUtilities.CalculateSeniorityInYears(DateTime.Now.AddYears(-10));
 
-            Person person2 = new Person();
+            Session1.Person person2 = new Session1.Person();
             Console.WriteLine($"The person's first name is {person2.FirstName}, last name is {person2.LastName} and age is {person2.Age}");
 
-            Person person3 = new Person("Radu", "Fifiita", 32);
+            Session1.Person person3 = new Session1.Person("Radu", "Fifiita", 32);
             Console.WriteLine($"The person's first name is {person3.FirstName}, last name is {person3.LastName} and age is {person3.Age}");
 
-            Person person4 = new Person("Test", "Boundary", 5);
+            Session1.Person person4 = new Session1.Person("Test", "Boundary", 5);
             Console.WriteLine($"The person's first name is {person4.FirstName}, last name is {person4.LastName} and age is {person4.Age}");
 
             person4.Age = -1;
 
             // session1 Homework
 
-            Person personHomework = new Person();
+            Session1.Person personHomework = new Session1.Person();
             //Person personHomework = new Person("Noemi", "Homework", 55);
 
 
@@ -70,8 +71,28 @@ namespace ETA25_Intermediate_C_
 
             personsList.ForEach(person => person.DisplayInfo());
 
+            //homework
+
+            //cream manager1
+            Session6.Manager manager1 = new Session6.Manager("FirstName", "LastName");
+            manager1.SetBonus(10000);
+            manager1.SetTeamSize(25);
+
+            //cream employee
+            Session6.Employee employeehomework = new Session6.Employee("Employee", "1");
+            employeehomework.SetSalary(598);
+            
 
 
+            //polimorphism - TO BE CONTINUED
+
+
+            List<Session6.Person> people = new List<Session6.Person>();
+            {
+    
+            }
+           
+            people.ForEach(person => person.DisplayInfo());
 
             #endregion
 
@@ -79,3 +100,4 @@ namespace ETA25_Intermediate_C_
         }
     }
 }
+
