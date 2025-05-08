@@ -71,27 +71,34 @@ namespace ETA25_Intermediate_C_
 
             personsList.ForEach(person => person.DisplayInfo());
 
-            //homework
+            //HOMEWORK
 
             //cream manager1
-            Session6.Manager manager1 = new Session6.Manager("FirstName", "LastName");
+            Session6.Manager manager1 = new Session6.Manager("Noemi", "Sz");
             manager1.SetBonus(10000);
             manager1.SetTeamSize(25);
 
             //cream employee
-            Session6.Employee employeehomework = new Session6.Employee("Employee", "1");
+            Session6.Employee employeehomework = new Session6.Employee("EmployeeNr1", "Department1");
             employeehomework.SetSalary(598);
             
 
 
-            //polimorphism - TO BE CONTINUED
-
+            //polimorphism
 
             List<Session6.Person> people = new List<Session6.Person>();
             {
-    
+
+                people.Add(manager1);
+                people.Add(employeehomework);
+
             }
-           
+
+            //foreach (Session6.Person pers in people)
+            //{
+            //    pers.DisplayInfo();
+            //}
+
             people.ForEach(person => person.DisplayInfo());
 
             #endregion

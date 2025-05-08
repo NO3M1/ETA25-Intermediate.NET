@@ -52,7 +52,7 @@ public class Manager : Person
 
     public override void DisplayInfo()
     {
-        Console.WriteLine($"Manager: {Name} ,Leads of{_teamSize} people, Bonus {_bonus} ");
+        Console.WriteLine($"Manager: {Name} ,Leads of {_teamSize} people, Bonus {_bonus} ");
     }
 
     public override string WoAmI()
