@@ -12,12 +12,13 @@ class FramesPage
 {
     private readonly IWebDriver _driver;
     private readonly JavascriptHelper _javascriptHelper;
-    
+    private readonly FramesHelper _framesHelper;
 
     public FramesPage(IWebDriver driver)
     {
         _driver = driver;
         _javascriptHelper = new JavascriptHelper(driver);
+        _framesHelper = new FramesHelper(driver);
       
     }
 
@@ -28,26 +29,33 @@ class FramesPage
 
     public void GetTextFromBigFrame()
     {
-        _driver.SwitchTo().Frame(frame1);
+        _framesHelper.SwithToFrame(frame1);
+
+        //or
+        //_driver.SwitchTo().Frame(frame1);
+
         Console.WriteLine(frame1Text.Text);
+
         //revenim la main content
         _driver.SwitchTo().DefaultContent();
+        //or folosim helperul
+        _framesHelper.SwithToDeafultContent();
+
     }
 
     public void ScrollOnSmallFrame()
     {
         _javascriptHelper.ScrollVertically(1000);
-        _driver.SwitchTo().Frame(frame2);
+        _framesHelper.SwithToFrame(frame2);
         _javascriptHelper.Scroll(1000,1000);
 
     }
 
     public void GetTextFromSmallFrame()
     {
-        _driver.SwitchTo().Frame(frame2);
+        _framesHelper.SwithToFrame(frame2);
         Console.WriteLine(frame2Text.Text);
-        //revenim la main content
-        _driver.SwitchTo().DefaultContent();
+        _framesHelper.SwithToDeafultContent();
     }
 
 }
