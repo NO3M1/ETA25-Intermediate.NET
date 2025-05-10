@@ -19,6 +19,7 @@ public class AlertsFramesWindowsTests
     public JavascriptHelper JavascriptHelper;
     private readonly Homepage _homePage;
     private readonly AlertsPage _alertsPage;
+    private readonly FramesPage _framesPage;
 
     //contructor
     public AlertsFramesWindowsTests()
@@ -29,6 +30,7 @@ public class AlertsFramesWindowsTests
         JavascriptHelper = new JavascriptHelper(Driver);
         _homePage = new Homepage(Driver);
         _alertsPage = new AlertsPage(Driver);
+        _framesPage = new FramesPage(Driver);
         
     }
 
@@ -173,6 +175,21 @@ public class AlertsFramesWindowsTests
 
     }
 
+    [Test]
+    public void SwitchingAndGettingTextFromTheFrames()
+    {
+        IWebElement framesOption = Driver.FindElement(By.XPath("//span[text()=\"Frames\"]"));
+        framesOption.Click();
+
+        _framesPage.GetTextFromBigFrame();
+       
+        _framesPage.GetTextFromSmallFrame();
+
+        _framesPage.ScrollOnSmallFrame();
+
+
+        Thread.Sleep(1000);
+    }
 
 }
 
