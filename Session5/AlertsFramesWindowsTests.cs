@@ -20,6 +20,9 @@ public class AlertsFramesWindowsTests
     private readonly Homepage _homePage;
     private readonly AlertsPage _alertsPage;
     private readonly FramesPage _framesPage;
+    private readonly BrowserWindowsPage _browserWindowsPage;
+    private readonly NestedFramesPage _nestedFramesPage;
+
 
     //contructor
     public AlertsFramesWindowsTests()
@@ -31,6 +34,8 @@ public class AlertsFramesWindowsTests
         _homePage = new Homepage(Driver);
         _alertsPage = new AlertsPage(Driver);
         _framesPage = new FramesPage(Driver);
+        _browserWindowsPage = new BrowserWindowsPage(Driver);
+        _nestedFramesPage = new NestedFramesPage(Driver);
         
     }
 
@@ -191,5 +196,42 @@ public class AlertsFramesWindowsTests
         Thread.Sleep(1000);
     }
 
+    [Test]
+    public void GetTextFromNewTabTest()
+    {
+        IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
+        browserWindowOption.Click();
+
+        _browserWindowsPage.GetTextFromNewTabButton();
+       
+
+        Thread.Sleep(1000);
+    }
+
+    [Test]
+    public void GetTextFromNewWindowButtonTest()
+    {
+        IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
+        browserWindowOption.Click();
+
+        _browserWindowsPage.GetTextFromNewWindowButton();
+
+
+        Thread.Sleep(1000);
+    }
+
+    [Test]
+    public void NestedFramesSwithcBackTest()
+    {
+
+        IWebElement nestedFramesOption = Driver.FindElement(By.XPath("//span[text()=\"Nested Frames\"]"));
+        nestedFramesOption.Click();
+
+        _nestedFramesPage.GetTextFromParent();
+       // _nestedFramesPage.GetTextFromChildFrame();
+
+        Console.WriteLine("Text returned from ParentFrame is:" + _nestedFramesPage.GetTextFromParent());
+      //  Console.WriteLine("Text returned from ChildFrame is:" + _nestedFramesPage.GetTextFromChildFrame());
+    }
 }
 
