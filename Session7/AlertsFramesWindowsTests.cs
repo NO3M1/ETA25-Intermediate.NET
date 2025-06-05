@@ -146,7 +146,7 @@ public class AlertsFramesWindowsTests
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        ////_alertsPage.OpenConfirmationAlert();
+        ////AlertsPage.OpenConfirmationAlert();
         //var alertText = AlertHelper.GetAlertText();
         //Assert.That(alertText == "Do you confirm action?");
         //AlertHelper.AlertCancel();
@@ -228,10 +228,10 @@ public class AlertsFramesWindowsTests
         nestedFramesOption.Click();
 
         _nestedFramesPage.GetTextFromParent();
-       // _nestedFramesPage.GetTextFromChildFrame();
+       // NestedFramesPage.GetTextFromChildFrame();
 
         Console.WriteLine("Text returned from ParentFrame is:" + _nestedFramesPage.GetTextFromParent());
-      //  Console.WriteLine("Text returned from ChildFrame is:" + _nestedFramesPage.GetTextFromChildFrame());
+      //  Console.WriteLine("Text returned from ChildFrame is:" + NestedFramesPage.GetTextFromChildFrame());
     }
 }
 

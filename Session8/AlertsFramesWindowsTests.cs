@@ -3,74 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ETA25_Intermediate_C_.Session5.Enums;
-using ETA25_Intermediate_C_.Session5.HelperMethods;
-using ETA25_Intermediate_C_.Session5.Pages;
+using ETA25_Intermediate_C_.Session8.Enums;
+using ETA25_Intermediate_C_.Session8.HelperMethods;
+using ETA25_Intermediate_C_.Session8.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace ETA25_Intermediate_C_.Session5;
-public class AlertsFramesWindowsTests
+namespace ETA25_Intermediate_C_.Session8;
+public class AlertsFramesWindowsTests : BaseTest
 {
-    public IWebDriver Driver { get; private set; }
-    public const string BaseUrl = "https://demoqa.com/";
-    public AlertHelper AlertHelper;
-    public JavascriptHelper JavascriptHelper;
-    private readonly Homepage _homePage;
-    private readonly AlertsPage _alertsPage;
-    private readonly FramesPage _framesPage;
-    private readonly BrowserWindowsPage _browserWindowsPage;
-    private readonly NestedFramesPage _nestedFramesPage;
-
-
-    //contructor
-    public AlertsFramesWindowsTests()
-    {
-        //initializare driverului & others
-        Driver = new ChromeDriver();
-        AlertHelper = new AlertHelper(Driver);
-        JavascriptHelper = new JavascriptHelper(Driver);
-        _homePage = new Homepage(Driver);
-        _alertsPage = new AlertsPage(Driver);
-        _framesPage = new FramesPage(Driver);
-        _browserWindowsPage = new BrowserWindowsPage(Driver);
-        _nestedFramesPage = new NestedFramesPage(Driver);
-        
-    }
-
-    [SetUp]
-    public void Setup()
-    {
-        Driver.Navigate().GoToUrl(BaseUrl);
-        Driver.Manage().Window.Maximize();
-
-        JavascriptHelper.ScrollVertically(400);
-
-        _homePage.AccesPageByName(CardName.AlertsFramesWindows);
-
-    }
-
-    [TearDown]
-    public void CleanUp()
-    {
-        if (Driver != null)
-        {
-            Driver.Quit();
-            Driver.Dispose();
-
-        }
-
-    }
 
     [Test]
     public void OpenBasicAlertTest()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
 
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        _alertsPage.OpenBasicAlert();
+        AlertsPage.OpenBasicAlert();
 
         var alertText = AlertHelper.GetAlertText();
         Assert.That(alertText == "You clicked a button");
@@ -80,11 +32,12 @@ public class AlertsFramesWindowsTests
     [TestCase("This alert appeared after 5 seconds")]
     public void OpenTimerAlertTest(string alertExpectedText)
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
 
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        _alertsPage.OpenTimerAlert();
+        AlertsPage.OpenTimerAlert();
 
         var alertText = AlertHelper.GetAlertTextWithDelay();
         Assert.That(alertText == alertExpectedText);
@@ -94,17 +47,18 @@ public class AlertsFramesWindowsTests
     [Test]
     public void OpenConfirmationAlertTest()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
 
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        _alertsPage.OpenConfirmationAlert();
+        AlertsPage.OpenConfirmationAlert();
 
         var alertText = AlertHelper.GetAlertText();
         Assert.That(alertText == "Do you confirm action?");
 
         AlertHelper.AlertCancel();
-        var alertResultText = _alertsPage.GetConfirmationAlertResult();
+        var alertResultText = AlertsPage.GetConfirmationAlertResult();
 
         Assert.That(alertResultText == "You selected Cancel");
 
@@ -115,10 +69,12 @@ public class AlertsFramesWindowsTests
     public void OpenOKorCancelAlertTest(string userInput)
     {
 
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        _alertsPage.OpenConfirmationAlert();
+        AlertsPage.OpenConfirmationAlert();
 
         var alertText = AlertHelper.GetAlertText();
         Assert.That(alertText == "Do you confirm action?");
@@ -132,7 +88,7 @@ public class AlertsFramesWindowsTests
             AlertHelper.AlertOk();
         }
 
-        var alertResultText = _alertsPage.GetConfirmationAlertResult();
+        var alertResultText = AlertsPage.GetConfirmationAlertResult();
 
         Assert.That(alertResultText == $"You selected {userInput}");
 
@@ -142,6 +98,7 @@ public class AlertsFramesWindowsTests
     [Test]
     public void CheckConfirmationAlertResultWithoutOpeningALertTest()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
 
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
@@ -151,7 +108,7 @@ public class AlertsFramesWindowsTests
         //Assert.That(alertText == "Do you confirm action?");
         //AlertHelper.AlertCancel();
 
-        var alertResultText = _alertsPage.GetConfirmationAlertResult();
+        var alertResultText = AlertsPage.GetConfirmationAlertResult();
 
         //Assert.That(alertResultText == "");
         Assert.That(alertResultText == string.Empty);
@@ -161,18 +118,19 @@ public class AlertsFramesWindowsTests
     [TestCase("Noemi Sz")]
     public void OpenComplexAlertTest(string alertInputText)
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
 
         IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
         practiceFormOption.Click();
 
-        _alertsPage.OpenComplexAlert();
+        AlertsPage.OpenComplexAlert();
 
         var alertText = AlertHelper.GetAlertText();
         Assert.That(alertText == "Please enter your name");
 
         AlertHelper.AlertSendtext(alertInputText);
 
-        var alertResultText = _alertsPage.GetComplexAlertResult();
+        var alertResultText = AlertsPage.GetComplexAlertResult();
 
         Console.WriteLine($"alertResultText: {alertResultText}"); // nu se ia textul din ceva motiv
 
@@ -183,14 +141,16 @@ public class AlertsFramesWindowsTests
     [Test]
     public void SwitchingAndGettingTextFromTheFrames()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
         IWebElement framesOption = Driver.FindElement(By.XPath("//span[text()=\"Frames\"]"));
         framesOption.Click();
 
-        _framesPage.GetTextFromBigFrame();
+        FramesPage.GetTextFromBigFrame();
        
-        _framesPage.GetTextFromSmallFrame();
+        FramesPage.GetTextFromSmallFrame();
 
-        _framesPage.ScrollOnSmallFrame();
+        FramesPage.ScrollOnSmallFrame();
 
 
         Thread.Sleep(1000);
@@ -199,10 +159,12 @@ public class AlertsFramesWindowsTests
     [Test]
     public void GetTextFromNewTabTest()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
         IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
         browserWindowOption.Click();
 
-        _browserWindowsPage.GetTextFromNewTabButton();
+        BrowserWindowsPage.GetTextFromNewTabButton();
        
 
         Thread.Sleep(1000);
@@ -211,10 +173,12 @@ public class AlertsFramesWindowsTests
     [Test]
     public void GetTextFromNewWindowButtonTest()
     {
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
         IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
         browserWindowOption.Click();
 
-        _browserWindowsPage.GetTextFromNewWindowButton();
+        BrowserWindowsPage.GetTextFromNewWindowButton();
 
 
         Thread.Sleep(1000);
@@ -224,13 +188,15 @@ public class AlertsFramesWindowsTests
     public void NestedFramesSwithcBackTest()
     {
 
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
         IWebElement nestedFramesOption = Driver.FindElement(By.XPath("//span[text()=\"Nested Frames\"]"));
         nestedFramesOption.Click();
 
-        _nestedFramesPage.GetTextFromParent();
+        NestedFramesPage.GetTextFromParent();
        // NestedFramesPage.GetTextFromChildFrame();
 
-        Console.WriteLine("Text returned from ParentFrame is:" + _nestedFramesPage.GetTextFromParent());
+        Console.WriteLine("Text returned from ParentFrame is:" + NestedFramesPage.GetTextFromParent());
       //  Console.WriteLine("Text returned from ChildFrame is:" + NestedFramesPage.GetTextFromChildFrame());
     }
 }

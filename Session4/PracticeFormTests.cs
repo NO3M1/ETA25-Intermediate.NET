@@ -65,19 +65,19 @@ public class PracticeFormTests
 
         JavascriptHelper.ScrollVertically(400);
         
-/*         _practiceFormPage.FirstNameInput.SendKeys("Noemi");
-         _practiceFormPage.LastNameInput.SendKeys("Sz");
-         _practiceFormPage.EmailInput.SendKeys("test@test.com");
-         _practiceFormPage.SelectGender(Gender.Male);
-         _practiceFormPage.MobileInput.SendKeys("0748515895");
-         _practiceFormPage.SetDateOfBirth("1992", "August", "31");
-         _practiceFormPage.SelectSubjects(new List<string>() { "English", "Accounting", "Physics" });
-         _practiceFormPage.SelectHobbies(new List<Hobby>() { Hobby.Music, Hobby.Reading });
-         _practiceFormPage.CurrentAddressInput.SendKeys("Test address input");
-         _practiceFormPage.stateDropdown.SendKeys("NCR");
-         _practiceFormPage.stateDropdown.SendKeys(Keys.Enter);
-         _practiceFormPage.cityDropdown.SendKeys("Delhi");
-         _practiceFormPage.stateDropdown.SendKeys(Keys.Enter);
+/*         PracticeFormPage.FirstNameInput.SendKeys("Noemi");
+         PracticeFormPage.LastNameInput.SendKeys("Sz");
+         PracticeFormPage.EmailInput.SendKeys("test@test.com");
+         PracticeFormPage.SelectGender(Gender.Male);
+         PracticeFormPage.MobileInput.SendKeys("0748515895");
+         PracticeFormPage.SetDateOfBirth("1992", "August", "31");
+         PracticeFormPage.SelectSubjects(new List<string>() { "English", "Accounting", "Physics" });
+         PracticeFormPage.SelectHobbies(new List<Hobby>() { Hobby.Music, Hobby.Reading });
+         PracticeFormPage.CurrentAddressInput.SendKeys("Test address input");
+         PracticeFormPage.stateDropdown.SendKeys("NCR");
+         PracticeFormPage.stateDropdown.SendKeys(Keys.Enter);
+         PracticeFormPage.cityDropdown.SendKeys("Delhi");
+         PracticeFormPage.stateDropdown.SendKeys(Keys.Enter);
 */
 
 
