@@ -12,8 +12,8 @@ namespace ETA25_Intermediate_C_.Session8.Pages;
 
 public class Homepage : BasePage
 {
-    private readonly IWebDriver _driver;
-    private readonly JavascriptHelper _javascriptHelper;
+    //private readonly IWebDriver _driver;
+    //private readonly JavascriptHelper _javascriptHelper;
 
     //constructor 
     public Homepage(IWebDriver Driver) : base(Driver) { }
@@ -51,7 +51,7 @@ public class Homepage : BasePage
 
     public void AccesPageByName(CardName cardName)
     {
-        _javascriptHelper.Scroll(1000, 1000);
+        //_javascriptHelper.Scroll(1000, 1000);
         switch (cardName)
         {
             case CardName.Elements:

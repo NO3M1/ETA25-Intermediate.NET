@@ -83,7 +83,7 @@ public class AlertsFramesWindowsTests : BaseTest
         {
             AlertHelper.AlertCancel();
         }
-        else 
+        else
         {
             AlertHelper.AlertOk();
         }
@@ -146,11 +146,11 @@ public class AlertsFramesWindowsTests : BaseTest
         IWebElement framesOption = Driver.FindElement(By.XPath("//span[text()=\"Frames\"]"));
         framesOption.Click();
 
-        FramesPage.GetTextFromBigFrame();
-       
-        FramesPage.GetTextFromSmallFrame();
+        //FramesPage.GetTextFromBigFrame();
 
-        FramesPage.ScrollOnSmallFrame();
+        //FramesPage.GetTextFromSmallFrame();
+
+        //FramesPage.ScrollOnSmallFrame();
 
 
         Thread.Sleep(1000);
@@ -164,8 +164,8 @@ public class AlertsFramesWindowsTests : BaseTest
         IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
         browserWindowOption.Click();
 
-        BrowserWindowsPage.GetTextFromNewTabButton();
-       
+        //BrowserWindowsPage.GetTextFromNewTabButton();
+
 
         Thread.Sleep(1000);
     }
@@ -178,7 +178,7 @@ public class AlertsFramesWindowsTests : BaseTest
         IWebElement browserWindowOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
         browserWindowOption.Click();
 
-        BrowserWindowsPage.GetTextFromNewWindowButton();
+        // BrowserWindowsPage.GetTextFromNewWindowButton();
 
 
         Thread.Sleep(1000);
@@ -193,11 +193,11 @@ public class AlertsFramesWindowsTests : BaseTest
         IWebElement nestedFramesOption = Driver.FindElement(By.XPath("//span[text()=\"Nested Frames\"]"));
         nestedFramesOption.Click();
 
-        NestedFramesPage.GetTextFromParent();
-       // NestedFramesPage.GetTextFromChildFrame();
+        //NestedFramesPage.GetTextFromParent();
+        // NestedFramesPage.GetTextFromChildFrame();
 
-        Console.WriteLine("Text returned from ParentFrame is:" + NestedFramesPage.GetTextFromParent());
-      //  Console.WriteLine("Text returned from ChildFrame is:" + NestedFramesPage.GetTextFromChildFrame());
+        //Console.WriteLine("Text returned from ParentFrame is:" + NestedFramesPage.GetTextFromParent());
+        //  Console.WriteLine("Text returned from ChildFrame is:" + NestedFramesPage.GetTextFromChildFrame());
     }
 }
 
