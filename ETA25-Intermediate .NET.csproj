@@ -20,4 +20,8 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="137.0.7151.5500" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="OOP\Abstractisation\Interfaces\" />
+  </ItemGroup>
+
 </Project>
