@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ETA25_Intermediate_C_.Session8.Enums;
-using ETA25_Intermediate_C_.Session8.HelperMethods;
-using ETA25_Intermediate_C_.Session8.Pages;
+using ETA25_Intermediate_C_.Session9.Enums;
+using ETA25_Intermediate_C_.Session9.HelperMethods;
+using ETA25_Intermediate_C_.Session9.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V133.Storage;
 
-namespace ETA25_Intermediate_C_.Session8;
+namespace ETA25_Intermediate_C_.Session9;
 public class TextBoxTests : BaseTest
 {
 
@@ -20,27 +20,10 @@ public class TextBoxTests : BaseTest
 
     public void FillFormTest(string fullName, string email, string currentAddress, string permanentAddress)
     {
-        JavascriptHelper.Scroll(0, 100); //h
-
-        //HomePage varianta 1
-        //_homepage.ElementsCard.Click();
-
-        //HomePage varianta 2
-        //_homepage.AccessElementsPage();
-
-        //HomePage varianta 3
-        HomePage.AccesPageByName(CardName.Elements);
-
+        JavascriptHelper.Scroll(0, 100);
 
         IWebElement textBoxOption = Driver.FindElement(By.XPath("//span[text()=\"Text Box\"]"));
         textBoxOption.Click();
-
-
-        //initializam un webelement pentru inputul Full Name
-
-        /*v1
-        By fullNameInputSelector = By.Id("userName");
-        IWebElement fullNameInput = Driver.FindElement(fullNameInputSelector);*/
 
         //v2
         IWebElement fullNameInput = Driver.FindElement(By.Id("userName"));
@@ -80,6 +63,18 @@ public class TextBoxTests : BaseTest
 
         }
 
+    }
+    [SetUp]
+    public override void ExtraSetup()
+    {
+        HomePage.AccesPageByName(CardName.Elements);
+
+    }
+
+    [TearDown]
+    public override void ExtraCleanup()
+    {
+        //add implementaiton here
     }
 }
 

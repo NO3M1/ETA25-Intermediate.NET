@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 
-namespace ETA25_Intermediate_C_.Session8.HelperMethods;
+namespace ETA25_Intermediate_C_.Session9.HelperMethods;
 
 public class JavascriptHelper
 {

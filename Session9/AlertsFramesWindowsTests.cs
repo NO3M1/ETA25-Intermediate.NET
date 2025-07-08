@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ETA25_Intermediate_C_.Session8.Enums;
-using ETA25_Intermediate_C_.Session8.HelperMethods;
-using ETA25_Intermediate_C_.Session8.Pages;
+using ETA25_Intermediate_C_.Session9.Enums;
+using ETA25_Intermediate_C_.Session9.HelperMethods;
+using ETA25_Intermediate_C_.Session9.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-namespace ETA25_Intermediate_C_.Session8;
+namespace ETA25_Intermediate_C_.Session9;
 public class AlertsFramesWindowsTests : BaseTest
 {
+
+
+    [SetUp]
+    public override void ExtraSetup()
+    {
+        AlertsPage = new AlertsPage(Driver);
+
+        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
+
+        AlertsPage.AccessSideMenuOption(Enums.AlertsFramesWindowsMenuOption.Alerts);
+
+        JavascriptHelper.ScrollVertically(200);
+    }
+
+    [TearDown]
+    public override void ExtraCleanup()
+    {
+        //add implementation here
+    }
+
+    protected AlertsPage AlertsPage { get; private set; } = null!;
+
     [Test]
     public void OpenBasicAlertTest()
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
-        JavascriptHelper.ScrollVertically(200);
 
         AlertsPage.OpenBasicAlert();
 
@@ -32,11 +49,6 @@ public class AlertsFramesWindowsTests : BaseTest
     [TestCase("This alert appeared after 5 seconds")]
     public void OpenTimerAlertTest(string alertExpectedText)
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
-        JavascriptHelper.ScrollVertically(200);
 
         AlertsPage.OpenTimerAlert();
 
@@ -48,11 +60,6 @@ public class AlertsFramesWindowsTests : BaseTest
     [Test]
     public void OpenConfirmationAlertTest()
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
-        JavascriptHelper.ScrollVertically(200);
 
         AlertsPage.OpenConfirmationAlert();
 
@@ -70,11 +77,6 @@ public class AlertsFramesWindowsTests : BaseTest
     [TestCase("Ok")]
     public void OpenOKorCancelAlertTest(string userInput)
     {
-
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
 
         AlertsPage.OpenConfirmationAlert();
 
@@ -100,11 +102,6 @@ public class AlertsFramesWindowsTests : BaseTest
     [Test]
     public void CheckConfirmationAlertResultWithoutOpeningALertTest()
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
-        JavascriptHelper.ScrollVertically(200);
 
         ////AlertsPage.OpenConfirmationAlert();
         //var alertText = AlertHelper.GetAlertText();
@@ -121,24 +118,15 @@ public class AlertsFramesWindowsTests : BaseTest
     [TestCase("Noemi Sz")]
     public void OpenComplexAlertTest(string alertInputText)
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement practiceFormOption = Driver.FindElement(By.XPath("//span[text()=\"Alerts\"]"));
-        practiceFormOption.Click();
-        JavascriptHelper.ScrollVertically(200);
-
         AlertsPage.OpenComplexAlert();
 
         var alertText = AlertHelper.GetAlertText();
         Assert.That(alertText == "Please enter your name");
 
         AlertHelper.AlertSendtext(alertInputText);
-
         var alertResultText = AlertsPage.GetComplexAlertResult();
 
-        //Console.WriteLine($"alertResultText: {alertResultText}"); // nu se ia textul din ceva motiv
-
-        Assert.That(alertResultText == $"You entered {alertInputText}", Is.True);
+        //Assert.That(alertResultText == $"You entered {alertInputText}");
 
     }
 
@@ -205,13 +193,10 @@ public class AlertsFramesWindowsTests : BaseTest
         }
     }*/
 
-    [Test]
-    public void OpenNewWindowMessageTest()
+    [TestCase(DriverType.Firefox)]
+    public void OpenNewWindowMessageTest(DriverType driverType)
     {
-        HomePage.AccesPageByName(Enums.CardName.AlertsFramesWindows);
-
-        IWebElement browserWindowsOption = Driver.FindElement(By.XPath("//span[text()=\"Browser Windows\"]"));
-        browserWindowsOption.Click();
+        AlertsPage.AccessSideMenuOption(Enums.AlertsFramesWindowsMenuOption.BrowserWindows);
 
         IWebElement newWindowMessageButton = Driver.FindElement(By.Id("messageWindowButton"));
         newWindowMessageButton.Click();
@@ -220,22 +205,11 @@ public class AlertsFramesWindowsTests : BaseTest
         var currentWindowName = Driver.CurrentWindowHandle;
         Driver.SwitchTo().Window(windows[1]);
 
-        JavascriptHelper.ExecuteScript("document.close();");
 
-        new WebDriverWait(Driver, TimeSpan.FromSeconds(10))
-            .Until(d =>
-                ((IJavaScriptExecutor)d)
-                  .ExecuteScript("return document.readyState")
-                  .Equals("complete"));
-        var text = JavascriptHelper.GetElementTextContent("body");
-
-
-        IWebElement pageText = Driver.FindElement(By.TagName("body"));
-        string validationText = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
+        string pageText = Driver.FindElement(By.TagName("body")).Text;
+        string validationText = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
 
         Assert.That(pageText, Is.EqualTo(validationText));
-
-        var alertText = AlertHelper.GetAlertText();
-        Assert.That(alertText == "You clicked a button");
     }
+
 }

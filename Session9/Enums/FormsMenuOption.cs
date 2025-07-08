@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETA25_Intermediate_C_.Session8.HelperMethods;
+namespace ETA25_Intermediate_C_.Session9.Enums;
 
-class WindowHelper
+public enum FormsMenuOption
 {
-    //not used yet
-
+    PracticeForm
 }
