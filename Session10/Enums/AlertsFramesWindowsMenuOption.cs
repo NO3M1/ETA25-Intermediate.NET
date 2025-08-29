@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ETA25_Intermediate_C_.Session10.Enums;
+
+
+public enum AlertsFramesWindowsMenuOption
+{
+    BrowserWindows,
+    Alerts,
+    Frames,
+    NestedFrames,
+    ModalDialogs
+}
